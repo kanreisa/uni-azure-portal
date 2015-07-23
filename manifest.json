@@ -1,0 +1,27 @@
+{
+    "manifest_version": 2,
+    "name"            : "Uni Azure Portal",
+    "version"         : "1",
+    "description"     : "Universalize the Azure Portal (Preview).",
+    "icons": {
+        "16" : "icon16.png",
+        "48" : "icon48.png",
+        "128": "icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://portal.azure.com/"
+            ],
+            "js"     : ["uni.js"],
+            "all_frames": true,
+            "run_at": "document_start"
+        }
+    ],
+    "web_accessible_resources": [
+        "uni.css"
+    ],
+    "permissions": [
+        "https://portal.azure.com/*"
+    ]
+}

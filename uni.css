@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/* Disable horizontal scrolling. */
+.fxs-portal .fxs-portal-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* In default, single-pane view */
+section.fxs-blade {
+    width: calc(100vw - 85px);
+}
+
+/* If window size larger than 1200px, will 2-pane view automatically. */
+@media screen and (min-width: 1200px) {
+    section.fxs-blade:nth-last-child(2) {
+        width: calc(30vw - 85px);
+    }
+
+    section.fxs-blade:last-child {
+        width: calc(70vw);
+        margin-right: 0 !important;
+    }
+
+    section.fxs-blade:only-child {
+        width: calc(100vw - 85px);
+    }
+}
+
+/* Blade content should be 100% width everytime. */
+section.fxs-blade.fxs-bladesize-small > div.fxs-blade-content > div {
+    width: 100%;
+}
+
+/* Don't need useless buttons. */
+section.fxs-blade > header button.fxs-blade-maximizeOrRestore,
+section.fxs-blade > header button.fxs-blade-minimize {
+    display: none;
+}
