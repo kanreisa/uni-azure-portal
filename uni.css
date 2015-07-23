@@ -1,5 +1,13 @@
 @charset "UTF-8";
 
+/* Disable animation */
+*,
+.fxs-panorama-scrollbounce-onleft > .fxs-journey-target,
+.fxs-panorama-scrollbounce-onright > .fxs-journey-target {
+    transition: none !important;
+    transform: none !important;
+}
+
 /* Disable horizontal scrolling. */
 .fxs-portal .fxs-portal-content {
     overflow-x: hidden;
@@ -15,11 +23,11 @@ section.fxs-blade {
 /* If window size larger than 1200px, will 2-pane view automatically. */
 @media screen and (min-width: 1200px) {
     section.fxs-blade:nth-last-child(2) {
-        width: calc(30vw - 85px) !important;
+        width: calc(35vw - 85px) !important;
     }
 
     section.fxs-blade:last-child {
-        width: calc(70vw) !important;
+        width: calc(65vw) !important;
         margin-right: 0 !important;
     }
 
