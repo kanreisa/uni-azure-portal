@@ -23,6 +23,40 @@
         }
     }
 
+    var hash = '';
+    function hashProcessor() {
+
+        setTimeout(hashProcessor, 500);
+
+        if (hash !== location.hash) {
+            hash = location.hash;
+
+            if (/Microsoft\.Web\/sites\/[0-9a-z\-]+/.test(hash) === true) {
+                var siteName = hash.match(/Microsoft\.Web\/sites\/([0-9a-z\-]+)/)[1];
+
+                var summaryBottom = document.querySelector('div.fxs-part-resourcesummary-bottom');
+                var summarySettingsButton = document.querySelector('span.fxs-part-resourcesummary-settings');
+
+                if (summaryBottom === null || summarySettingsButton === null) {
+                    hash = '';
+                    return;
+                }
+
+                var kudu = summarySettingsButton.cloneNode(true);
+                kudu.className = 'fxs-text-primary fxcontrol-hotspot fxcontrol-hotspot-clickable';
+
+                kudu.firstChild.textContent = 'Kudu';
+
+                kudu.addEventListener('click', function () {
+
+                    window.open('https://' + siteName + '.scm.azurewebsites.net/', siteName);
+                });
+
+                summaryBottom.insertBefore(kudu, summaryBottom.firstChild);
+            }
+        }
+    }
+
     window.addEventListener('DOMContentLoaded', function () {
 
         var local = chrome.extension.getURL('/');
@@ -38,6 +72,7 @@
         body.appendChild(css);
 
         removePortalContentPointerDownEvents();
+        hashProcessor();
     });
 
 }());
