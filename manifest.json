@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name"            : "Uni Azure Portal",
-    "version"         : "7",
+    "version"         : "8",
     "description"     : "Universalize the Azure Portal (Preview).",
     "icons": {
         "16" : "icon16.png",

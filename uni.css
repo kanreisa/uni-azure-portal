@@ -59,3 +59,9 @@ section.fxs-blade > header button.fxs-blade-minimize {
 section.fxs-blade > div.fxs-blade-content > div {
     width: 100% !important;
 }
+
+/* Grid row size tweak. */
+table.azc-grid-full > tbody > tr > td.azc-br-muted:last-child > div.azc-grid-cellContent > div.azc-vivaControl > div {
+    padding-top: 9px !important;
+    padding-bottom: 8px !important;
+}
