@@ -24,14 +24,15 @@
     }
 
     var hash = '';
-    function hashProcessor() {
+	var content = null;
+    function loop() {
 
-        setTimeout(hashProcessor, 500);
+        setTimeout(loop, 500);
 
         if (hash !== location.hash) {
             hash = location.hash;
 
-            if (/Microsoft\.Web\/sites\/[0-9a-z\-]+/.test(hash) === true) {
+            /* if (/Microsoft\.Web\/sites\/[0-9a-z\-]+/.test(hash) === true) {
                 var siteName = hash.match(/Microsoft\.Web\/sites\/([0-9a-z\-]+)/)[1];
 
                 var summaryBottom = document.querySelector('div.fxs-part-resourcesummary-bottom');
@@ -42,17 +43,15 @@
                     return;
                 }
 
-                var kudu = summarySettingsButton.cloneNode(true);
-                kudu.className = 'fxs-text-primary fxcontrol-hotspot fxcontrol-hotspot-clickable';
+                //
+            } */
+        }
 
-                kudu.firstChild.textContent = 'Kudu';
-
-                kudu.addEventListener('click', function () {
-
-                    window.open('https://' + siteName + '.scm.azurewebsites.net/', siteName);
-                });
-
-                summaryBottom.insertBefore(kudu, summaryBottom.firstChild);
+        if (content === null) {
+            content = document.querySelector('#web-container > div.fxs-portal-main > div.fxs-portal-content');
+        } else {
+            if (content.scrollLeft !== content.scrollWidth - content.offsetWidth - 1) {
+                content.scrollLeft = content.scrollWidth - content.offsetWidth - 1;
             }
         }
     }
@@ -72,7 +71,7 @@
         body.appendChild(css);
 
         removePortalContentPointerDownEvents();
-        hashProcessor();
+        loop();
     });
 
 }());

@@ -16,8 +16,16 @@
 
 /* In default, single-pane view */
 section.fxs-blade {
-    width: calc(100vw - 85px) !important;
-        margin-right: 0 !important;
+    width: calc(100vw - 224px) !important;
+    margin-right: 0 !important;
+}
+
+div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade {
+    width: calc(100vw - 58px) !important;
+}
+
+.fxs-journey>.fxs-journey-layout::after {
+    width: 0 !important;
 }
 
 /* Remove buttons. */
@@ -28,18 +36,28 @@ section.fxs-blade > header button.fxs-blade-minimize {
 
 /* If window size larger than 1200px, will 2-pane view automatically. */
 @media screen and (min-width: 1200px) {
+
     section.fxs-blade:nth-last-child(2) {
-        width: calc(35vw - 85px) !important;
+        width: calc(50vw - 224px) !important;
         min-width: 0 !important;
     }
 
-    section.fxs-blade:last-child {
-        width: calc(65vw) !important;
+    div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade:nth-last-child(2) {
+        width: calc(50vw - 58px) !important;
+    }
+
+    section.fxs-blade:last-child,
+    div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade:last-child {
+        width: calc(50vw) !important;
         margin-right: 0 !important;
     }
 
     section.fxs-blade.fxs-blade-maximized:last-child {
-        width: calc(100vw - 85px) !important;
+        width: calc(100vw - 224px) !important;
+    }
+
+    div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade.fxs-blade-maximized:last-child {
+        width: calc(100vw - 58px) !important;
     }
 
     section.fxs-blade:last-child > header button.fxs-blade-maximizeOrRestore {
@@ -47,12 +65,17 @@ section.fxs-blade > header button.fxs-blade-minimize {
     }
 
     section.fxs-blade:only-child {
-        width: calc(100vw - 85px) !important;
+        width: calc(100vw - 224px) !important;
+    }
+
+    div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade:only-child {
+        width: calc(100vw - 58px) !important;
     }
 
     section.fxs-blade:only-child > header button.fxs-blade-maximizeOrRestore {
         display: none;
     }
+
 }
 
 /* Blade content should be 100% width everytime. */
