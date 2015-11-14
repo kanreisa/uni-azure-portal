@@ -1,5 +1,5 @@
-/*jslint vars:true, plusplus:true */
-/*global chrome */
+/*jslint vars:true, plusplus:true, white:true */
+/*global $ */
 (function () {
     'use strict';
 
@@ -22,29 +22,56 @@
             setTimeout(removePortalContentPointerDownEvents, 1000);
         }
     }
+    removePortalContentPointerDownEvents();
 
     var hash = '';
-	var content = null;
+    var bladesChanged = false;
+    var bladesContainer = null;
+    var content = null;
+
     function loop() {
 
         setTimeout(loop, 500);
 
-        if (hash !== location.hash) {
+        if (hash !== location.hash || bladesChanged === true) {
             hash = location.hash;
+            bladesChanged = false;
 
-            /* if (/Microsoft\.Web\/sites\/[0-9a-z\-]+/.test(hash) === true) {
-                var siteName = hash.match(/Microsoft\.Web\/sites\/([0-9a-z\-]+)/)[1];
+            // Get all blades
+            var blades = document.querySelectorAll('.fxs-journey-layout > section');
 
-                var summaryBottom = document.querySelector('div.fxs-part-resourcesummary-bottom');
-                var summarySettingsButton = document.querySelector('span.fxs-part-resourcesummary-settings');
+            var i, l = blades.length;
 
-                if (summaryBottom === null || summarySettingsButton === null) {
-                    hash = '';
-                    return;
+            for (i = 0; i < l; i++) {
+                $(blades[i]).removeClass('uni-fixed-bladesize-side uni-fixed-bladesize-main');
+            }
+
+            if (l >= 2) {
+                if (
+                    $(blades[l - 2]).hasClass('fxs-bladesize-small') === true &&
+                    $(blades[l - 1]).hasClass('fxs-bladesize-small') === true
+                ) {
+                    $(blades[l - 2]).addClass('uni-fixed-bladesize-side');
+                    $(blades[l - 1]).addClass('uni-fixed-bladesize-main');
+                } else if (
+                    $(blades[l - 2]).hasClass('fxs-bladesize-small') === false &&
+                    $(blades[l - 1]).hasClass('fxs-bladesize-small') === true
+                ) {
+                    $(blades[l - 2]).addClass('uni-fixed-bladesize-main');
+                    $(blades[l - 1]).addClass('uni-fixed-bladesize-side');
                 }
+            }
+        }
 
-                //
-            } */
+        if (bladesContainer === null) {
+            bladesContainer = document.querySelector('.fxs-journey-layout');
+
+            if (bladesContainer) {
+                bladesContainer.addEventListener('DOMSubtreeModified', function () {
+
+                    bladesChanged = true;
+                });
+            }
         }
 
         if (content === null) {
@@ -55,23 +82,6 @@
             }
         }
     }
-
-    window.addEventListener('DOMContentLoaded', function () {
-
-        var local = chrome.extension.getURL('/');
-
-        var body = document.getElementsByTagName('body')[0];
-
-        var css = document.createElement('link');
-
-        css.setAttribute('type', 'text/css');
-        css.setAttribute('rel', 'stylesheet');
-        css.setAttribute('href', local + 'uni.css');
-
-        body.appendChild(css);
-
-        removePortalContentPointerDownEvents();
-        loop();
-    });
+    loop();
 
 }());

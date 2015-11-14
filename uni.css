@@ -46,16 +46,34 @@ section.fxs-blade > header button.fxs-blade-minimize {
         width: calc(50vw - 58px) !important;
     }
 
+    /* last blade */
     section.fxs-blade:last-child,
     div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade:last-child {
         width: calc(50vw) !important;
         margin-right: 0 !important;
     }
 
+    /* fixed bladesizes */
+    section.fxs-blade:nth-last-child(2).uni-fixed-bladesize-side,
+    section.fxs-blade:last-child.uni-fixed-bladesize-side,
+    div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade:nth-last-child(2).uni-fixed-bladesize-side,
+    div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade:last-child.uni-fixed-bladesize-side {
+        width: 315px !important;
+    }
+    section.fxs-blade:nth-last-child(2).uni-fixed-bladesize-main,
+    section.fxs-blade:last-child.uni-fixed-bladesize-main {
+        width: calc(100vw - 224px - 315px) !important;
+    }
+    div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade:nth-last-child(2).uni-fixed-bladesize-main,
+    div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade:last-child.uni-fixed-bladesize-main {
+        width: calc(100vw - 58px - 315px) !important;
+    }
+
+    /* If last blade is maximized */
     section.fxs-blade.fxs-blade-maximized:last-child {
         width: calc(100vw - 224px) !important;
     }
-
+    /* and sidebar is collapsed */
     div.fxs-sidebar-is-collapsed ~ div.fxs-portal-content section.fxs-blade.fxs-blade-maximized:last-child {
         width: calc(100vw - 58px) !important;
     }
