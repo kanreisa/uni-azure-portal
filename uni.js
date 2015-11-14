@@ -31,7 +31,7 @@
 
     function loop() {
 
-        setTimeout(loop, 500);
+        setTimeout(loop, 200);
 
         if (hash !== location.hash || bladesChanged === true) {
             hash = location.hash;
@@ -48,8 +48,14 @@
 
             if (l >= 2) {
                 if (
-                    $(blades[l - 2]).hasClass('fxs-bladesize-small') === true &&
-                    $(blades[l - 1]).hasClass('fxs-bladesize-small') === true
+                    (
+                        $(blades[l - 2]).hasClass('fxs-bladesize-small') === true &&
+                        $(blades[l - 1]).hasClass('fxs-bladesize-small') === true
+                    ) ||
+                    (
+                        $(blades[l - 2]).hasClass('fxs-bladesize-small') === true &&
+                        $(blades[l - 1]).hasClass('fxs-bladesize-small') === false
+                    )
                 ) {
                     $(blades[l - 2]).addClass('uni-fixed-bladesize-side');
                     $(blades[l - 1]).addClass('uni-fixed-bladesize-main');
